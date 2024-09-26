@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "commons/*"
   ],
   "scripts": {
     "front": "npm exec --workspace=company-front",
