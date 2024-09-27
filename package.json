@@ -11,9 +11,13 @@
     "front": "npm exec --workspace=company-front",
     "dev:front": "npm run front -- npm run dev",
     "server": "npm exec --workspace=company-server",
-    "dev:server": "npm run server -- npm run dev"
+    "dev:server": "npm run server -- npm run dev",
+    "dev": "concurrently -c red,blue -n 'front','server' 'npm run dev:front' 'npm run dev:server'"
   },
   "keywords": [],
   "author": "felipemarinhodev",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
 }
