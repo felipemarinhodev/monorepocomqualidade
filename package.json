@@ -12,7 +12,9 @@
     "dev:front": "npm run front -- npm run dev",
     "server": "npm exec --workspace=company-server",
     "dev:server": "npm run server -- npm run dev",
-    "dev": "concurrently -c red,blue -n 'front','server' 'npm run dev:front' 'npm run dev:server'"
+    "dev": "concurrently -c red,blue -n 'front','server' 'npm run dev:front' 'npm run dev:server'",
+    "generator": "npm exec --workspace=@felipemarinhodev/generator",
+    "gen": "npm run generator -- npm run gen"
   },
   "keywords": [],
   "author": "felipemarinhodev",
