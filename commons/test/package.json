@@ -1,0 +1,19 @@
+{
+  "name": "@felipemarinhodev/commons-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "lint": "eslint './**/*.{jsx,tsx,js,ts}'"
+  },
+  "keywords": [],
+  "author": "felipemarinhodev",
+  "license": "ISC",
+  "devDependencies": {
+    "@felipemarinhodev/commons-lint": "*",
+    "@types/jest": "^29.5.13",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "ts-jest": "^29.2.5"
+  }
+}
