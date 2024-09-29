@@ -1,0 +1,15 @@
+name: "[CI] Continuous Integration"
+
+# Quando vamos rodar?
+on:
+  pull_request:
+    types: [opened, synchronize] # `opened` = quando um PR for criado | `synchronize` = quando o PR é atualizado com outra branch | São conhecidos como eventos.
+
+# Quais tarefas queremos executar?
+jobs:
+  # Tarefa - é o nome dessa tarefa, pode ter diversas tarefas.
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+        - name: "Test!"
+          run: "echo 'Olá mundo!'"
