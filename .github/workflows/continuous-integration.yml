@@ -18,3 +18,14 @@ jobs:
           run: "npm install"
         - name: "Lint"
           run: "npm run lint"
+  # Tarefa - é o nome dessa tarefa, pode ter diversas tarefas.
+  test:
+    runs-on: ubuntu-latest
+    steps:
+        # [Common CI/CD Step] Para saber que vai utilizar o codigo do repositorio.
+        - uses: actions/checkout@v3
+        # ===================
+        - name: "Install dependencies"
+          run: "npm install"
+        - name: "Test"
+          run: "npm run test"
