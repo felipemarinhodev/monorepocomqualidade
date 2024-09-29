@@ -1,7 +1,7 @@
 import { httpClient } from '@felipemarinhodev/commons-http-client';
 import http from 'http';
 
-console.warn("Node JS!");
+console.log("Node JS!");
 
 http.createServer(async (_, res) => {
 
