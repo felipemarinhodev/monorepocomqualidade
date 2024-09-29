@@ -5,6 +5,10 @@ on:
   pull_request:
     types: [opened, synchronize] # `opened` = quando um PR for criado | `synchronize` = quando o PR é atualizado com outra branch | São conhecidos como eventos.
 
+# variáveis reusáveis do projeto
+env:
+  NODE_VERSION: 20.14.0
+
 # Quais tarefas queremos executar?
 jobs:
   # Tarefa - é o nome dessa tarefa, pode ter diversas tarefas.
@@ -13,9 +17,15 @@ jobs:
     steps:
         # [Common CI/CD Step] Para saber que vai utilizar o codigo do repositorio.
         - uses: actions/checkout@v3
+        # [Cache of the dependencies]
+        - uses: actions/setup-node@v4
+          with:
+            node-version: ${{ env.NODE_VERSION }}
+            cache: "npm"
+            cache-dependency-path: ./package-lock.json
         # ===================
         - name: "Install dependencies"
-          run: "npm install"
+          run: "npm ci --prefer-offline" # `npm ci` utiliza as informações do arquivo `package-lock.json` para realizar o download das bibliotecas necessária. O `npm install` vai analisar se tem atualização instalar se for necessário.
         - name: "Lint"
           run: "npm run lint"
   # Tarefa - é o nome dessa tarefa, pode ter diversas tarefas.
@@ -24,8 +34,14 @@ jobs:
     steps:
         # [Common CI/CD Step] Para saber que vai utilizar o codigo do repositorio.
         - uses: actions/checkout@v3
+        # [Cache of the dependencies]
+        - uses: actions/setup-node@v4
+          with:
+            node-version: ${{ env.NODE_VERSION }}
+            cache: "npm"
+            cache-dependency-path: ./package-lock.json
         # ===================
         - name: "Install dependencies"
-          run: "npm install"
+          run: "npm ci --prefer-offline"
         - name: "Test"
           run: "npm run test"
