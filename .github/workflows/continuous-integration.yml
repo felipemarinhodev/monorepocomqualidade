@@ -25,7 +25,7 @@ jobs:
             cache-dependency-path: ./package-lock.json
         # ===================
         - name: "Install dependencies"
-          run: "npm ci --offline" # `npm ci` utiliza as informações do arquivo `package-lock.json` para realizar o download das bibliotecas necessária. O `npm install` vai analisar se tem atualização instalar se for necessário.
+          run: "npm ci --prefer-offline" # `npm ci` utiliza as informações do arquivo `package-lock.json` para realizar o download das bibliotecas necessária. O `npm install` vai analisar se tem atualização instalar se for necessário.
         - name: "Lint"
           run: "npm run lint"
   # Tarefa - é o nome dessa tarefa, pode ter diversas tarefas.
@@ -42,6 +42,6 @@ jobs:
             cache-dependency-path: ./package-lock.json
         # ===================
         - name: "Install dependencies"
-          run: "npm ci --offline"
+          run: "npm ci --prefer-offline"
         - name: "Test"
           run: "npm run test"
