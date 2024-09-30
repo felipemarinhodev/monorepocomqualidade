@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "keywords": [],
-  "author": "Felipe Marinho",
+  "author": "Felipe Marinho (felipemarinhodev)",
   "license": "ISC",
   "dependencies": {
     "@felipemarinhodev/commons-http-client": "*",
