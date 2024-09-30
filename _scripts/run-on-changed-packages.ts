@@ -5,11 +5,25 @@ const diffChangedFiles = execSync("git diff --name-only HEAD^..HEAD", {
   encoding: "utf-8"
 }).split("\n");
 
+const getPackage = (pathToPackageJSON: string) => {
+  return JSON.parse(fs.readFileSync(pathToPackageJSON, {
+    encoding: "utf-8"
+  }));
+}
+
+const getWorkspaces = () => {
+  const PATH_PACKAGE = "./package.json";
+  const content = getPackage(PATH_PACKAGE);
+  return content.workspaces.map(workspace => workspace.replace("/*", ""));
+}
+
+const workspaces = getWorkspaces();
+
 const changedPackageNames = diffChangedFiles
   // 1 - Precisamos ter os paths dos package JSONs
   .map((path) => {
     const [workspace, packageFolder] = path.split("/");
-    if (workspace !== "apps" && workspace !== "commons") return null;
+    if (!workspaces.some(workspaceName => workspaceName === workspace)) return null;
     return `${workspace}/${packageFolder}/package.json`;
   })
   // 1.1 - Remover os valores `nulls`
@@ -21,9 +35,7 @@ const changedPackageNames = diffChangedFiles
   // 3 - Ler os arquivos `package.json` e pegar o nome dentro do package JSON 
   .reduce((_changePackageNames: string[], pathToPackageJSON: string | null) => {
     if (pathToPackageJSON) {
-      const packageJSON = JSON.parse(fs.readFileSync(pathToPackageJSON, {
-        encoding: "utf-8"
-      }));
+      const packageJSON = getPackage(pathToPackageJSON);
       const packageName = packageJSON.name;
       return [
         ..._changePackageNames,
